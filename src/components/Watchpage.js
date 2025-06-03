@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { closeSidebarMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentContainer";
-
+import LiveChat from "./LiveChat";
 
 
 const Watchpage = () => {
@@ -19,7 +19,9 @@ useEffect(() => {
 },[])
 
 return (
-<div>
+<div className="flex flex-col w-full">
+  <div className="px-5 flex w-full">
+    <div>
     <iframe 
     width="1000" 
     height="500" 
@@ -28,7 +30,12 @@ return (
      referrerPolicy="strict-origin-when-cross-origin" 
      allowFullScreen>
     </iframe>
-   <CommentsContainer/>
+    </div>
+  <div className="w-full">
+  <LiveChat/>
+  </div>
+  </div>
+  <CommentsContainer/>
   </div>
 
 )}   

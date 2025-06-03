@@ -27,10 +27,22 @@ const Header = () => {
    *  searchQuery = iphone
    */
 
+    /**
+     * debouncing:
+     * key - i
+     * - render the component
+     * - useEffect();
+     * start timer => make api call after 200 ms
+     * 
+     * key - ip
+     * - destroy the component(useEffect return method)
+     * re-render the component
+     * useEffect()start => make an api call after 200ms
+     */
+
     useEffect(() => {
 
        const timer = setTimeout(() => {
-
         if(searchCache[searchQuery]){
             setSuggestions(searchCache[searchQuery]);
         }
@@ -53,7 +65,6 @@ const Header = () => {
     setSuggestions(json[1]);
 
     dispatch(
-
         cacheResults({
             [searchQuery]: json[1]
         }),
@@ -66,7 +77,9 @@ const Header = () => {
        <div className="flex col-span-1">
        <img  onClick={() => toggleHandler()} className="h-8 cursor-pointer" alt="hamburger-btn" src="data:image/jpeg;base64,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"
         />
+       <a href="/">    
        <img className="h-8 mx-5" alt="youtube-icon" src="https://as2.ftcdn.net/v2/jpg/07/32/01/31/1000_F_732013128_4w36WRSEpuF1oT9nK0Bd31GT353WqFYi.jpg"/>
+       </a>
       </div>
 
       <div className="col-span-10 static">
